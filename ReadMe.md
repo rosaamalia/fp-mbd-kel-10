@@ -1,1 +1,0 @@
-bisa yok bikin fp
