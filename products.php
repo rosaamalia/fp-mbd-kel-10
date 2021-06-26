@@ -1,7 +1,7 @@
 <?php
 require 'query.php';
 
-$query = "select * from products";
+$query = "select * from (select * from products A join categories B on A.category_id=B.category_id) C join suppliers D on C.supplier_id=D.supplier_id";
 
 $result = pg_query($db, $query);
 ?>
@@ -205,13 +205,49 @@ $result = pg_query($db, $query);
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Product Data</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            ...
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label for="nrp">Kode</label>
+                                                        <input type="text" class="form-control" name="kode" id="kode"
+                                                            required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="judul">Judul</label>
+                                                        <input type="text" class="form-control" name="judul" id="judul"
+                                                            required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="penulis">Penulis</label>
+                                                        <input type="text" class="form-control" name="penulis"
+                                                            id="penulis" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="subyek">Subyek</label>
+                                                        <input type="text" class="form-control" name="subyek"
+                                                            id="subyek" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="penerbit">Penerbit</label>
+                                                        <input type="text" class="form-control" name="penerbit"
+                                                            id="penerbit" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="tahun_terbit">Tahun Terbit</label>
+                                                        <input type="int" class="form-control" name="tahun_terbit"
+                                                            id="tahun_terbit" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="sampul">Sampul</label>
+                                                        <input type="file" name="sampul" id="sampul" required>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -229,6 +265,8 @@ $result = pg_query($db, $query);
                                     <thead>
                                         <tr>
                                             <th>Product Name</th>
+                                            <th>Supplier</th>
+                                            <th>Category</th>
                                             <th>Quantity per Unit</th>
                                             <th>Price</th>
                                             <th>Stock</th>
@@ -241,6 +279,8 @@ $result = pg_query($db, $query);
                                     <tfoot>
                                         <tr>
                                             <th>Product Name</th>
+                                            <th>Supplier</th>
+                                            <th>Category</th>
                                             <th>Quantity per Unit</th>
                                             <th>Price</th>
                                             <th>Stock</th>
@@ -256,6 +296,8 @@ $result = pg_query($db, $query);
 
                                         <tr>
                                             <td><?= $row->product_name; ?></td>
+                                            <td><?= $row->company_name; ?></td>
+                                            <td><?= $row->category_name; ?></td>
                                             <td><?= $row->quantity_per_unit; ?></td>
                                             <td><?= "$".$row->unit_price; ?></td>
                                             <td><?= $row->units_in_stock; ?></td>
