@@ -1,9 +1,19 @@
 <?php
-require 'query.php';
+require 'function.php';
 
 $query = "select * from (select * from products A join categories B on A.category_id=B.category_id) C join suppliers D on C.supplier_id=D.supplier_id";
 
 $result = pg_query($db, $query);
+
+// masukkan data input ke function add_product di file function.php
+if( isset($_POST["submit"]))
+{
+    if (add_product($_POST)>0)
+    {
+        header("location: products.php");
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -214,45 +224,77 @@ $result = pg_query($db, $query);
                                             <form action="" method="post" enctype="multipart/form-data">
                                                 <div class="box-body">
                                                     <div class="form-group">
-                                                        <label for="nrp">Kode</label>
-                                                        <input type="text" class="form-control" name="kode" id="kode"
+                                                        <label for="product_name">Product Name</label>
+                                                        <input type="text" class="form-control" name="product_name"
+                                                            id="product_name" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="supplier">Supplier</label>
+                                                        <select class="form-control" name="supplier" id="supplier">
+                                                            <option>Choose supplier company</option>
+                                                            <?php
+                                                                $query = "select * from suppliers";
+
+                                                                $supplier = pg_query($db, $query);
+
+                                                                for($i=0; $row = pg_fetch_object($supplier); $i++) :
+                                                            ?>
+                                                            <option><?php echo $row->company_name; ?></option>
+                                                            <?php endfor; ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="category">Category</label>
+                                                        <select class="form-control" name="category" id="category">
+                                                            <option>Choose category</option>
+                                                            <?php
+                                                                $query = "select * from categories";
+
+                                                                $category = pg_query($db, $query);
+
+                                                                for($i=0; $row = pg_fetch_object($category); $i++) :
+                                                            ?>
+                                                            <option><?php echo $row->category_name; ?></option>
+                                                            <?php endfor; ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="quantity">Quantity per Unit</label>
+                                                        <input type="text" class="form-control" name="quantity"
+                                                            id="quantity" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="price">Price</label>
+                                                        <input type="text" class="form-control" name="price" id="price"
                                                             required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="judul">Judul</label>
-                                                        <input type="text" class="form-control" name="judul" id="judul"
+                                                        <label for="stock">Stock</label>
+                                                        <input type="int" class="form-control" name="stock" id="stock"
                                                             required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="penulis">Penulis</label>
-                                                        <input type="text" class="form-control" name="penulis"
-                                                            id="penulis" required>
+                                                        <label for="order">Order</label>
+                                                        <input type="int" class="form-control" name="order" id="order"
+                                                            required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="subyek">Subyek</label>
-                                                        <input type="text" class="form-control" name="subyek"
-                                                            id="subyek" required>
+                                                        <label for="reorder_level">Reorder Level</label>
+                                                        <input type="int" class="form-control" name="reorder_level"
+                                                            id="reorder_level" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="penerbit">Penerbit</label>
-                                                        <input type="text" class="form-control" name="penerbit"
-                                                            id="penerbit" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="tahun_terbit">Tahun Terbit</label>
-                                                        <input type="int" class="form-control" name="tahun_terbit"
-                                                            id="tahun_terbit" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="sampul">Sampul</label>
-                                                        <input type="file" name="sampul" id="sampul" required>
+                                                        <label for="discontinued">Discontinued</label>
+                                                        <input type="int" class="form-control" name="discontinued"
+                                                            id="discontinued" required>
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="submit" class="btn btn-primary" name="submit">Add
+                                                Product</button>
                                         </div>
                                     </div>
                                 </div>
@@ -271,7 +313,7 @@ $result = pg_query($db, $query);
                                             <th>Price</th>
                                             <th>Stock</th>
                                             <th>Order</th>
-                                            <th>Reorder Point</th>
+                                            <th>Reorder Level</th>
                                             <th>Discontinued</th>
                                             <th style="width: 150px">Action</th>
                                         </tr>
@@ -285,7 +327,7 @@ $result = pg_query($db, $query);
                                             <th>Price</th>
                                             <th>Stock</th>
                                             <th>Order</th>
-                                            <th>Reorder Point</th>
+                                            <th>Reorder Level</th>
                                             <th>Discontinued</th>
                                             <th style="width: 150px">Action</th>
                                         </tr>
