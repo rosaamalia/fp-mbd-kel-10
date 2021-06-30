@@ -1,19 +1,18 @@
 <?php
-require 'function.php';
+    require 'connection.php';
 
-$query = "select * from (select * from products A join categories B on A.category_id=B.category_id) C join suppliers D on C.supplier_id=D.supplier_id";
+    $query = "SELECT * FROM (SELECT * FROM products A JOIN categories B ON A.category_id=B.category_id) C JOIN suppliers D ON C.supplier_id=D.supplier_id";
 
-$result = pg_query($db, $query);
+    $result = pg_query($db, $query);
 
-// masukkan data input ke function add_product di file function.php
-if( isset($_POST["submit"]))
-{
-    if (add_product($_POST)>0)
-    {
-        header("location: products.php");
-    }
-}
-
+    // masukkan data input ke function add_product di file function.php
+    // if( isset($_POST["add_product"]))
+    // {
+    //     if (add_product($_POST)>0)
+    //     {
+    //         header("location: products.php");
+    //     }
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -204,14 +203,14 @@ if( isset($_POST["submit"]))
                         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between m-0">
                             <h6 class="m-0 font-weight-bold text-primary">Product Datas</h6>
                             <div class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
-                                data-target="#exampleModal">
+                                data-target="#Modal_add_product">
                                 <i class="fas fa-solid fa-plus fa-sm text-white-50"></i> Add Product
                                 Data
                             </div>
 
                             <!-- Modal Add Product -->
-                            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade bd-example-modal-lg" id="Modal_add_product" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -220,8 +219,8 @@ if( isset($_POST["submit"]))
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <form action="" method="post" enctype="multipart/form-data">
+                                        <form action="product_add_save.php" method="post" enctype="multipart/form-data">
+                                            <div class="modal-body">
                                                 <div class="box-body">
                                                     <div class="form-group">
                                                         <label for="product_name">Product Name</label>
@@ -289,16 +288,18 @@ if( isset($_POST["submit"]))
                                                             id="discontinued" required>
                                                     </div>
                                                 </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" name="submit">Add
-                                                Product</button>
-                                        </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary" name="add_product">Add
+                                                    Product</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                            <!-- End Modal Add Product -->
                         </div>
 
                         <div class="card-body">
@@ -355,10 +356,20 @@ if( isset($_POST["submit"]))
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="edit_product.php?id=<?= $row->product_id; ?>"
-                                                    class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i
-                                                        class="fas fa-solid fa-pen fa-sm text-white-50"></i>
-                                                    Edit</a>
+                                                <a href="product_edit_form.php?id=<?= $row->product_id; ?>"
+                                                    class="edit_btn d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"
+                                                    data-toggle="modal" data-target="#Modal_edit_product">
+                                                    <i class="fas fa-solid fa-pen fa-sm text-white-50"></i> Edit
+                                                </a>
+
+                                                <div class="modal fade bd-example-modal-lg" id="Modal_edit_product"
+                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <a href="delete_product.php?id=<?= $row->product_id; ?>"
                                                     class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
@@ -438,6 +449,17 @@ if( isset($_POST["submit"]))
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <!-- Show edit data modal -->
+    <script>
+    $('.edit_btn').on('click',
+        function(e) {
+            e.preventDefault();
+            $('#Modal_edit_product').modal('show').find(
+                '.modal-content').load($(
+                this).attr('href'));
+        });
+    </script>
 
 </body>
 
