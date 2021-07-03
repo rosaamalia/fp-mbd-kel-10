@@ -70,7 +70,7 @@
 
             <!-- Nav Item - Products Category -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="productscategory.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products Category</span></a>
             </li>
@@ -84,7 +84,7 @@
 
             <!-- Nav Item - Shipper -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="shipper.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Shipper</span></a>
             </li>
@@ -98,7 +98,7 @@
 
             <!-- Nav Item - Employee -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="employee.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Employee</span></a>
             </li>
@@ -244,7 +244,7 @@
 
                         <!-- Products Category -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-info shadow h-100 py-2" href="">
+                            <a class="card border-left-info shadow h-100 py-2" href="productscategory.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -280,7 +280,7 @@
 
                         <!-- Shipper -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-info shadow h-100 py-2" href="">
+                            <a class="card border-left-info shadow h-100 py-2" href="shipper.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -316,7 +316,7 @@
 
                         <!-- Employee -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-success shadow h-100 py-2" href="">
+                            <a class="card border-left-success shadow h-100 py-2" href="employee.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
