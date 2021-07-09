@@ -213,7 +213,7 @@
                                         <tr>
                                             <th>Category Name</th>
                                             <th>Description</th>
-                                            <th>Picture</th>
+                                            <th style="width: 100px">Picture</th>
                                             <th style="width: 150px">Action</th>
                                         </tr>
                                     </thead>
@@ -221,7 +221,7 @@
                                         <tr>
                                             <th>Category Name</th>
                                             <th>Description</th>
-                                            <th>Picture</th>
+                                            <th style="width: 100px">Picture</th>
                                             <th style="width: 150px">Action</th>
                                         </tr>
                                     </tfoot>
@@ -237,13 +237,13 @@
                                             ?>
                                             <td><img src="<?= $picture; ?>"></td>
                                             <td>
-                                                <a href="product_edit_form.php?id=<?= $row->product_id; ?>"
+                                                <a href="productscategory_edit_form.php?id=<?= $row->category_id; ?>"
                                                     class="edit_btn d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"
-                                                    data-toggle="modal" data-target="#Modal_edit_product">
+                                                    data-toggle="modal" data-target="#Modal_edit_category">
                                                     <i class="fas fa-solid fa-pen fa-sm text-white-50"></i> Edit
                                                 </a>
 
-                                                <div class="modal fade bd-example-modal-lg" id="Modal_edit_product"
+                                                <div class="modal fade bd-example-modal-lg" id="Modal_edit_category"
                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
@@ -252,10 +252,20 @@
                                                     </div>
                                                 </div>
 
-                                                <a href="delete_product.php?id=<?= $row->product_id; ?>"
-                                                    class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+                                                <a href="productscategory_delete_alert.php?id=<?= $row->category_id; ?>"
+                                                    class="delete_btn d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
+                                                    data-toggle="modal" data-target="#Modal_delete_category"><i
                                                         class="fas fa-solid fa-trash fa-sm text-white-50"></i>
                                                     Delete</a>
+
+                                                <div class="modal fade bd-example-modal-lg" id="Modal_delete_category"
+                                                    tabindex="-1" role="dialog" aria-labelledby="Modal_delete"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
 
@@ -336,7 +346,18 @@
     $('.edit_btn').on('click',
         function(e) {
             e.preventDefault();
-            $('#Modal_edit_product').modal('show').find(
+            $('#Modal_edit_category').modal('show').find(
+                '.modal-content').load($(
+                this).attr('href'));
+        });
+    </script>
+
+    <!-- Show delete data alert -->
+    <script>
+    $('.delete_btn').on('click',
+        function(e) {
+            e.preventDefault();
+            $('#Modal_delete_category').modal('show').find(
                 '.modal-content').load($(
                 this).attr('href'));
         });
