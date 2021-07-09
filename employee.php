@@ -4,15 +4,6 @@
     $query = "SELECT * FROM employees";
 
     $result = pg_query($db, $query);
-
-    // masukkan data input ke function add_product di file function.php
-    // if( isset($_POST["add_product"]))
-    // {
-    //     if (add_product($_POST)>0)
-    //     {
-    //         header("location: products.php");
-    //     }
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -407,10 +398,20 @@
                                                     </div>
                                                 </div>
 
-                                                <a href="delete_product.php?id=<?= $row->product_id; ?>"
-                                                    class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+                                                <a href="employee_delete_alert.php?id=<?= $row->employee_id; ?>"
+                                                    class="delete_btn d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
+                                                    data-toggle="modal" data-target="#Modal_delete_employee"><i
                                                         class="fas fa-solid fa-trash fa-sm text-white-50"></i>
                                                     Delete</a>
+
+                                                <div class="modal fade bd-example-modal-lg" id="Modal_delete_employee"
+                                                    tabindex="-1" role="dialog" aria-labelledby="Modal_delete_employee"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
 
@@ -492,6 +493,17 @@
         function(e) {
             e.preventDefault();
             $('#Modal_edit_employee').modal('show').find(
+                '.modal-content').load($(
+                this).attr('href'));
+        });
+    </script>
+
+    <!-- Show delete data alert -->
+    <script>
+    $('.delete_btn').on('click',
+        function(e) {
+            e.preventDefault();
+            $('#Modal_delete_employee').modal('show').find(
                 '.modal-content').load($(
                 this).attr('href'));
         });
