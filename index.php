@@ -201,7 +201,7 @@
 
                         <!-- Products Category -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-info shadow h-100 py-2" href="">
+                            <a class="card border-left-info shadow h-100 py-2" href="productscategory.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -219,7 +219,7 @@
 
                         <!-- Supplier -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-info shadow h-100 py-2" href="">
+                            <a class="card border-left-info shadow h-100 py-2" href="supplier.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -237,7 +237,7 @@
 
                         <!-- Shipper -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-info shadow h-100 py-2" href="">
+                            <a class="card border-left-info shadow h-100 py-2" href="shipper.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -255,7 +255,7 @@
 
                         <!-- Customer -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-success shadow h-100 py-2" href="">
+                            <a class="card border-left-success shadow h-100 py-2" href="customer.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -273,7 +273,7 @@
 
                         <!-- Employee -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <a class="card border-left-success shadow h-100 py-2" href="">
+                            <a class="card border-left-success shadow h-100 py-2" href="employee.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">

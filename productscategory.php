@@ -4,15 +4,6 @@
     $query = "SELECT * FROM categories";
 
     $result = pg_query($db, $query);
-
-    // masukkan data input ke function add_product di file function.php
-    // if( isset($_POST["add_product"]))
-    // {
-    //     if (add_product($_POST)>0)
-    //     {
-    //         header("location: products.php");
-    //     }
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -79,15 +70,15 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Products -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="products.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products</span></a>
             </li>
 
             <!-- Nav Item - Products Category -->
-            <li class="nav-item active">
-                <a class="nav-link" href="productscategory.php">
+            <li class="nav-item">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products Category</span></a>
             </li>
@@ -196,18 +187,18 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Products Category</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Product Category</h1>
 
-                    <!-- Product Categories -->
+                    <!-- Product Datas -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between m-0">
-                            <h6 class="m-0 font-weight-bold text-primary">Product Categories</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Product Category</h6>
                             <div class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
                                 data-target="#Modal_add_product">
                                 <i class="fas fa-solid fa-plus fa-sm text-white-50"></i> Add Category
                             </div>
 
-                            <!-- Modal Add Product -->
+                            <!-- Modal Add Category -->
                             <div class="modal fade bd-example-modal-lg" id="Modal_add_product" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -218,7 +209,8 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="productscategory_add_save.php" method="post" enctype="multipart/form-data">
+                                        <form action="productscategory_add_save.php" method="post"
+                                            enctype="multipart/form-data">
                                             <div class="modal-body">
                                                 <div class="box-body">
                                                     <div class="form-group">
@@ -234,14 +226,14 @@
                                                     <div class="form-group">
                                                         <label for="picture">Picture</label>
                                                         <input type="text" class="form-control" name="picture"
-                                                            id="picture" required>
-                                                    </div>    
+                                                            id="picture">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-primary" name="add_product">Add
+                                                <button type="submit" class="btn btn-primary" name="add_category">Add
                                                     Category</button>
                                             </div>
                                         </form>
@@ -298,7 +290,7 @@
                                                     class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                                         class="fas fa-solid fa-trash fa-sm text-white-50"></i>
                                                     Delete</a>
-                                            </td> 
+                                            </td>
                                         </tr>
 
                                         <?php endwhile; ?>
