@@ -1,5 +1,5 @@
 <?php
-    $db = pg_connect("host=localhost port=5432 dbname=fp-mbd user=postgres password=05150302");
+    require 'connection.php';
 
     $product_id = $_POST["id"];
     $product_name = $_POST["product_name"];
