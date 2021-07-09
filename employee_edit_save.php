@@ -1,6 +1,7 @@
 <?php
     require 'connection.php';
 
+    $employee_id = $_POST["id"];
     $last_name = $_POST["last_name"];
     $first_name = $_POST["first_name"];
     $title = $_POST["title"];
@@ -32,10 +33,28 @@
     $notes = $_POST["notes"];
     $reports_to = $_POST["reports_to"];
     $photo_path = $tempat_photo;
-   
+
     // insert data
-    $query = "INSERT INTO employees VALUES (nextval('increment_employee'), '$last_name', '$first_name', '$title', '$title_of_courtesy', '$birth_date', '$hire_date', '$address', '$city', '$region', '$postal_code', '$country', '$home_phone', '$extension',  bytea('$tempat_photo'), '$notes', '$reports_to', '$photo_path')";
-    pg_query($db, $query);
+    $query = "UPDATE employees SET
+                last_name = '$last_name',
+                first_name = '$first_name',
+                title = '$title',
+                title_of_courtesy = '$title_of_courtesy',
+                birth_date = '$birth_date',
+                hire_date = '$hire_date',
+                address = '$address',
+                city = '$city',
+                region = '$region',
+                postal_code = '$postal_code',
+                country = '$country',
+                home_phone = '$home_phone',
+                extension = '$extension',
+                photo = bytea('$tempat_photo'),
+                notes = '$notes',
+                reports_to = '$reports_to',
+                photo_path = '$photo_path'
+            WHERE employee_id = $employee_id";
+    $result = pg_query($db, $query);
 
     header('location: employee.php');
 ?>
