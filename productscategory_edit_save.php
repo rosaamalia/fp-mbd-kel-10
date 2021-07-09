@@ -23,7 +23,7 @@
     // insert data
     $query = "UPDATE categories SET
                 category_name = '$category_name',
-                description = $description,
+                description = '$description',
                 picture = bytea('$tempat_picture')
             WHERE category_id = $category_id";
     $result = pg_query($db, $query);

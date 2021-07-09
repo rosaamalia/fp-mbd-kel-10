@@ -3,7 +3,7 @@
     
     $id = $_GET['id'];
 
-    $query ="SELECT * FROM categories";
+    $query ="SELECT * FROM categories WHERE category_id=$id";
     $row = pg_fetch_object(pg_query($db, $query));
 ?>
 
@@ -31,8 +31,8 @@
             </div>
             <div class="form-group">
                 <label for="picture">Picture</label>
-                <input type="file" class="form-control" name="picture" id="picture"
-                value="<?= $row->picture; ?>" required>
+                <input type="file" class="form-control" name="picture" id="picture" value="<?= $row->picture; ?>"
+                    required>
             </div>
         </div>
     </div>
