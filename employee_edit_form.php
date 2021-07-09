@@ -3,7 +3,7 @@
     
     $id = $_GET['id'];
 
-    $query ="SELECT * FROM employees";
+    $query ="SELECT * FROM employees WHERE employee_id=$id";
     $row = pg_fetch_object(pg_query($db, $query));
 ?>
 
@@ -21,8 +21,8 @@
         <div class="box-body">
             <div class="form-group">
                 <label for="last_name">Last Name</label>
-                <input type="text" class="form-control" name="last_name" id="last_name"
-                    value="<?= $row->last_name; ?>" required>
+                <input type="text" class="form-control" name="last_name" id="last_name" value="<?= $row->last_name; ?>"
+                    required>
             </div>
             <div class="form-group">
                 <label for="first_name">First Name</label>
@@ -31,8 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" id="title"
-                    value="<?= $row->title; ?>" required>
+                <input type="text" class="form-control" name="title" id="title" value="<?= $row->title; ?>" required>
             </div>
             <div class="form-group">
                 <label for="title_of_courtesy">Title of Courtesy</label>
@@ -46,23 +45,21 @@
             </div>
             <div class="form-group">
                 <label for="hire_date">Hire Date</label>
-                <input type="date" class="form-control" name="hire_date" id="hire_date"
-                    value="<?= $row->hire_date; ?>" required>
+                <input type="date" class="form-control" name="hire_date" id="hire_date" value="<?= $row->hire_date; ?>"
+                    required>
             </div>
             <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" name="address" id="address"
-                    value="<?= $row->address; ?>" required>
+                <input type="text" class="form-control" name="address" id="address" value="<?= $row->address; ?>"
+                    required>
             </div>
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" class="form-control" name="city" id="city"
-                    value="<?= $row->city; ?>" required>
+                <input type="text" class="form-control" name="city" id="city" value="<?= $row->city; ?>" required>
             </div>
             <div class="form-group">
                 <label for="region">Region</label>
-                <input type="text" class="form-control" name="region" id="region"
-                    value="<?= $row->region; ?>" required>
+                <input type="text" class="form-control" name="region" id="region" value="<?= $row->region; ?>" required>
             </div>
             <div class="form-group">
                 <label for="postal_code">Postal Code</label>
@@ -71,8 +68,8 @@
             </div>
             <div class="form-group">
                 <label for="country">Country</label>
-                <input type="text" class="form-control" name="country" id="country"
-                    value="<?= $row->country; ?>" required>
+                <input type="text" class="form-control" name="country" id="country" value="<?= $row->country; ?>"
+                    required>
             </div>
             <div class="form-group">
                 <label for="home_phone">Home Phone</label>
@@ -81,18 +78,17 @@
             </div>
             <div class="form-group">
                 <label for="extesion">Extension</label>
-                <input type="text" class="form-control" name="extension" id="extension"
-                    value="<?= $row->extension; ?>" required>
+                <input type="text" class="form-control" name="extension" id="extension" value="<?= $row->extension; ?>"
+                    required>
             </div>
             <div class="form-group">
                 <label for="photo">Photo</label>
                 <input type="file" class="form-control" name="photo" id="photo"
-                value="<?= $row->photo; ?>">
+                    value="<?= pg_unescape_bytea($row->photo); ?>">
             </div>
             <div class="form-group">
                 <label for="notes">Notes</label>
-                <input type="text" class="form-control" name="notes" id="notes"
-                    value="<?= $row->notes; ?>" required>
+                <input type="text" class="form-control" name="notes" id="notes" value="<?= $row->notes; ?>" required>
             </div>
             <div class="form-group">
                 <label for="reports_to">Reports to</label>
@@ -101,7 +97,7 @@
             </div>
             <div class="form-group">
                 <label for="photo_path">Photo Path</label>
-                <input type="number" class="form-control" name="photo_path" id="photo_path"
+                <input type="text" class="form-control" name="photo_path" id="photo_path"
                     value="<?= $row->photo_path; ?>" readonly>
             </div>
         </div>

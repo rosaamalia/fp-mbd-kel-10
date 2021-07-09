@@ -218,7 +218,8 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="employee_add_save.php" method="post" enctype="multipart/form-data">
+                                        <form action="employee_add_save.php" method="post"
+                                            enctype="multipart/form-data">
                                             <div class="modal-body">
                                                 <div class="box-body">
                                                     <div class="form-group">
@@ -230,82 +231,82 @@
                                                         <label for="first_name">First Name</label>
                                                         <input type="text" class="form-control" name="first_name"
                                                             id="first_name" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="title">Title</label>
-                                                        <input type="text" class="form-control" name="title"
-                                                            id="title" required>
-                                                    </div>  
+                                                        <input type="text" class="form-control" name="title" id="title"
+                                                            required>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="title_of_courtesy">Title of Courtesy</label>
-                                                        <input type="text" class="form-control" name="title _of_courtesy"
+                                                        <input type="text" class="form-control" name="title_of_courtesy"
                                                             id="title_of_courtesy" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="birth_date">Birth Date</label>
-                                                        <input type="text" class="form-control" name="birth_date"
+                                                        <input type="date" class="form-control" name="birth_date"
                                                             id="birth_date" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="hire_date">Hire Date</label>
-                                                        <input type="text" class="form-control" name="hire_date"
+                                                        <input type="date" class="form-control" name="hire_date"
                                                             id="hire_date" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="address">Address</label>
                                                         <input type="text" class="form-control" name="address"
                                                             id="address" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="city">City</label>
-                                                        <input type="text" class="form-control" name="city"
-                                                            id="city" required>
-                                                    </div>  
+                                                        <input type="text" class="form-control" name="city" id="city"
+                                                            required>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="region">Region</label>
                                                         <input type="text" class="form-control" name="region"
                                                             id="region" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="postal_code">Postal Code</label>
                                                         <input type="text" class="form-control" name="postal_code"
                                                             id="postal_code" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="country">Country</label>
                                                         <input type="text" class="form-control" name="country"
                                                             id="country" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="home_phone">Home Phone</label>
                                                         <input type="text" class="form-control" name="home_phone"
                                                             id="home_phone" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="extension">Extension</label>
                                                         <input type="text" class="form-control" name="extension"
                                                             id="extension" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="photo">Photo</label>
-                                                        <input type="text" class="form-control" name="photo"
-                                                            id="photo" required>
-                                                    </div>  
+                                                        <input type="file" class="form-control" name="photo" id="photo"
+                                                            required>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="notes">Notes</label>
-                                                        <input type="text" class="form-control" name="notes"
-                                                            id="notes" required>
-                                                    </div>  
+                                                        <input type="text" class="form-control" name="notes" id="notes"
+                                                            required>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="reports_to">Reports to</label>
                                                         <input type="text" class="form-control" name="reports_to"
                                                             id="reports_to" required>
-                                                    </div>  
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="photo_path">Photo Path</label>
                                                         <input type="text" class="form-control" name="photo_path"
                                                             id="photo_path" required>
-                                                    </div>    
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -386,18 +387,18 @@
                                             <td><?= $row->country; ?></td>
                                             <td><?= $row->home_phone; ?></td>
                                             <td><?= $row->extension; ?></td>
-                                            <td><?= $row->photo; ?></td>
+                                            <td><img src="<?= pg_unescape_bytea($row->photo); ?>"></td>
                                             <td><?= $row->notes; ?></td>
                                             <td><?= $row->reports_to; ?></td>
                                             <td><?= $row->photo_path; ?></td>
                                             <td>
-                                                <a href="product_edit_form.php?id=<?= $row->product_id; ?>"
+                                                <a href="employee_edit_form.php?id=<?= $row->employee_id; ?>"
                                                     class="edit_btn d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"
-                                                    data-toggle="modal" data-target="#Modal_edit_product">
+                                                    data-toggle="modal" data-target="#Modal_edit_employee">
                                                     <i class="fas fa-solid fa-pen fa-sm text-white-50"></i> Edit
                                                 </a>
 
-                                                <div class="modal fade bd-example-modal-lg" id="Modal_edit_product"
+                                                <div class="modal fade bd-example-modal-lg" id="Modal_edit_employee"
                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
@@ -410,7 +411,7 @@
                                                     class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                                         class="fas fa-solid fa-trash fa-sm text-white-50"></i>
                                                     Delete</a>
-                                            </td> 
+                                            </td>
                                         </tr>
 
                                         <?php endwhile; ?>
@@ -490,7 +491,7 @@
     $('.edit_btn').on('click',
         function(e) {
             e.preventDefault();
-            $('#Modal_edit_product').modal('show').find(
+            $('#Modal_edit_employee').modal('show').find(
                 '.modal-content').load($(
                 this).attr('href'));
         });
