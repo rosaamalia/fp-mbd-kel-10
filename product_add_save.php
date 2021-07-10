@@ -31,5 +31,5 @@
     $query = "INSERT INTO products VALUES (nextval('increment_product'), '$product_name', $supplier_id->supplier_id, $category_id->category_id, '$quantity', $price, $stock, $order, $reorder_level, $discontinued)";
     pg_query($db, $query);
 
-    header('location: products.php');
+    header('location: products.php?err=0');
 ?>

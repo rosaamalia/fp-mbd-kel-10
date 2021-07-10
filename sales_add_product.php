@@ -166,7 +166,7 @@
                                             <select class="form-control" name="product_name" id="product_name">
                                                 <option>Choose product</option>
                                                 <?php
-                                                    $query = "select * from products";
+                                                    $query = "select * from products where discontinued=0";
 
                                                     $product = pg_query($db, $query);
 
@@ -180,9 +180,6 @@
                                             <label for="quantity">Quantity</label>
                                             <input type="number" class="form-control" name="quantity" id="quantity"
                                                 required>
-                                            <div class="invalid-feedback">
-                                                Please select a valid state.
-                                            </div>
                                         </div>
                                         <div class="quantity form-group col-3">
                                             <label for="discount">Discount</label>

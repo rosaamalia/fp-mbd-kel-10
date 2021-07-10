@@ -5,6 +5,14 @@
 
     $result = pg_query($db, $query);
 
+    $err = $_GET["err"];
+    
+    if($err == 1) {
+        echo "<script>
+            alert ('This product is discontinued.');
+            </script>";
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +48,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -62,7 +70,7 @@
 
             <!-- Nav Item - Sales -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="sales.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sales</span></a>
             </li>
@@ -72,7 +80,7 @@
 
             <!-- Nav Item - Products -->
             <li class="nav-item active">
-                <a class="nav-link" href="products.php">
+                <a class="nav-link" href="products.php?err=0">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products</span></a>
             </li>

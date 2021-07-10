@@ -16,12 +16,12 @@ $pdf->SetDrawColor(0,0,0);
 $pdf->SetLineWidth(.3);
 
 //Table header
-$pdf->Cell(40,10,'Shipped Date',1,0,'C',1);
+$pdf->Cell(50,10,'Shipped Date',1,0,'C',1);
 $pdf->Cell(40,10,'Order ID',1,0,'C',1);
 $pdf->Cell(40,10,'Price',1,0,'C',1);
 $pdf->Cell(40,10,'Discount',1,0,'C',1);
 $pdf->Cell(40,10,'Freight',1,0,'C',1);
-$pdf->Cell(40,10,'Total Price',1,0,'C',1);
+$pdf->Cell(50,10,'Total Price',1,1,'C',1);
 
 //Restore font and colors
 $pdf->SetFont('Arial','',10);
@@ -29,7 +29,7 @@ $pdf->SetFillColor(224,235,255);
 $pdf->SetTextColor(0);
 
 //Connection and query
-$str_conexao='host=localhost port=5432 dbname=fp-mbd user=postgres password=Bolaitubundar1';
+$str_conexao='host=localhost port=5432 dbname=fp-mbd user=postgres password=05150302';
 $conexao=pg_connect($str_conexao);
 $consulta=pg_exec($conexao,'SELECT * FROM order_log');
 $numregs=pg_numrows($consulta);
@@ -45,11 +45,11 @@ while($i<$numregs)
     $discount=pg_result($consulta,$i,'discount');
     $freight=pg_result($consulta,$i,'freight');
     $price_total=pg_result($consulta,$i,'price_total');
-    $pdf->Cell(20,10,$shipped_date,1,0,'L',$fill);
-    $pdf->Cell(20,10,$order_id,1,0,'L',$fill);
-    $pdf->Cell(20,10,$price,1,0,'L',$fill);
-    $pdf->Cell(20,10,$discount,1,0,'L',$fill);
-    $pdf->Cell(20,10,$freight,1,0,'L',$fill);
+    $pdf->Cell(50,10,$shipped_date,1,0,'L',$fill);
+    $pdf->Cell(40,10,$order_id,1,0,'L',$fill);
+    $pdf->Cell(40,10,$price,1,0,'L',$fill);
+    $pdf->Cell(40,10,$discount,1,0,'L',$fill);
+    $pdf->Cell(40,10,$freight,1,0,'L',$fill);
     $pdf->Cell(50,10,$price_total,1,1,'L',$fill);
     $fill=!$fill;
     $i++;

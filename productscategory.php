@@ -61,7 +61,7 @@
 
             <!-- Nav Item - Sales -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="sales.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sales</span></a>
             </li>
@@ -70,14 +70,14 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Products -->
-            <li class="nav-item active">
-                <a class="nav-link" href="products.php">
+            <li class="nav-item">
+                <a class="nav-link" href="products.php?err=0">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products</span></a>
             </li>
 
             <!-- Nav Item - Products Category -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="productscategory.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products Category</span></a>
@@ -235,7 +235,7 @@
                                             <?php
                                                 $picture = pg_unescape_bytea($row->picture);
                                             ?>
-                                            <td><img src="<?= $picture; ?>"></td>
+                                            <td><img style="width: 100px" src="<?= $picture; ?>"></td>
                                             <td>
                                                 <a href="productscategory_edit_form.php?id=<?= $row->category_id; ?>"
                                                     class="edit_btn d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"

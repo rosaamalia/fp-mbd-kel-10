@@ -62,7 +62,7 @@
 
             <!-- Nav Item - Sales -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="sales.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sales</span></a>
             </li>
@@ -72,7 +72,7 @@
 
             <!-- Nav Item - Products -->
             <li class="nav-item">
-                <a class="nav-link" href="products.php">
+                <a class="nav-link" href="products.php?err=0">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products</span></a>
             </li>

@@ -62,7 +62,7 @@
 
             <!-- Nav Item - Sales -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="sales.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sales</span></a>
             </li>
@@ -72,7 +72,7 @@
 
             <!-- Nav Item - Products -->
             <li class="nav-item">
-                <a class="nav-link" href="products.php">
+                <a class="nav-link" href="products.php?err=0">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products</span></a>
             </li>
@@ -85,7 +85,7 @@
             </li>
 
             <!-- Nav Item - Supplier -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="supplier.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Supplier</span></a>
@@ -113,7 +113,7 @@
             </li>
 
             <!-- Nav Item - Sales Report -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="salesreport.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Sales Report</span></a>
@@ -151,8 +151,9 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between m-0">
                             <h6 class="m-0 font-weight-bold text-primary">Sales Report</h6>
-                            <a href="generatereport.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                            <a href="generatereport.php"
+                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                         </div>
 
                         <div class="card-body">
@@ -188,7 +189,7 @@
                                             <td><?= $row->price; ?></td>
                                             <td><?= $row->discount; ?></td>
                                             <td><?= $row->freight; ?></td>
-                                            <td><?= $row->total_price; ?></td>
+                                            <td><?= $row->price_total; ?></td>
                                         </tr>
 
                                         <?php endwhile; ?>

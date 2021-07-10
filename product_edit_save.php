@@ -40,5 +40,10 @@
             WHERE product_id = $product_id";
     $result = pg_query($db, $query);
 
-    header('location: products.php');
+    if(!$result)
+    {
+        header('location: products.php?err=1');
+    } else {
+        header('location: products.php?err=0');
+    }
 ?>

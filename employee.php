@@ -61,7 +61,7 @@
 
             <!-- Nav Item - Sales -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="sales.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sales</span></a>
             </li>
@@ -71,7 +71,7 @@
 
             <!-- Nav Item - Products -->
             <li class="nav-item">
-                <a class="nav-link" href="products.php">
+                <a class="nav-link" href="products.php?err=0">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Products</span></a>
             </li>
@@ -85,7 +85,7 @@
 
             <!-- Nav Item - Supplier -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="supplier.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Supplier</span></a>
             </li>
@@ -99,7 +99,7 @@
 
             <!-- Nav Item - Customer -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="customer.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Customer</span></a>
             </li>
@@ -113,7 +113,7 @@
 
             <!-- Nav Item - Sales Report -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="salesreport.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Sales Report</span></a>
             </li>
@@ -142,43 +142,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
 
                 </nav>
                 <!-- End of Topbar -->
@@ -378,7 +341,8 @@
                                             <td><?= $row->country; ?></td>
                                             <td><?= $row->home_phone; ?></td>
                                             <td><?= $row->extension; ?></td>
-                                            <td><img src="<?= pg_unescape_bytea($row->photo); ?>"></td>
+                                            <td><img style="width: 100px" src="<?= pg_unescape_bytea($row->photo); ?>">
+                                            </td>
                                             <td><?= $row->notes; ?></td>
                                             <td><?= $row->reports_to; ?></td>
                                             <td><?= $row->photo_path; ?></td>
