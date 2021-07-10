@@ -234,10 +234,20 @@
                                                     </div>
                                                 </div>
 
-                                                <a href="delete_product.php?id=<?= $row->product_id; ?>"
-                                                    class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+                                                <a href="shipper_delete_alert.php?id=<?= $row->shipper_id; ?>"
+                                                    class="delete_btn d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
+                                                    data-toggle="modal" data-target="#Modal_delete_shipper"><i
                                                         class="fas fa-solid fa-trash fa-sm text-white-50"></i>
                                                     Delete</a>
+
+                                                <div class="modal fade bd-example-modal-lg" id="Modal_delete_shipper"
+                                                    tabindex="-1" role="dialog" aria-labelledby="Modal_delete"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
 
@@ -276,26 +286,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -324,6 +314,16 @@
         });
     </script>
 
+    <!-- Show delete data alert -->
+    <script>
+    $('.delete_btn').on('click',
+        function(e) {
+            e.preventDefault();
+            $('#Modal_delete_shipper').modal('show').find(
+                '.modal-content').load($(
+                this).attr('href'));
+        });
+    </script>
 </body>
 
 </html>
