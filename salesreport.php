@@ -1,13 +1,7 @@
 <?php
     require 'connection.php';
 
-    $query = "SELECT customers.company_name, employees.last_name, products.product_name, orders.order_date, shippers.company_name, O.unit_price * O.quantity AS total_price
-    FROM customers customers JOIN orders orders ON customers.customer_id = orders.customer_id 
-    JOIN shippers shippers ON orders.ship_via = shippers.shipper_id 
-    JOIN employees employees ON orders.employee_id = employees.employee_id 
-    JOIN order_details O ON orders.order_id = O.order_id 
-    JOIN products products ON O.product_id = products.product_id
-    ORDER BY customers.customer_id";
+    $query = "SELECT * FROM order_log";
 
     $result = pg_query($db, $query);
 
@@ -157,6 +151,8 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between m-0">
                             <h6 class="m-0 font-weight-bold text-primary">Sales Report</h6>
+                            <a href="generatereport.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                         </div>
 
                         <div class="card-body">
@@ -164,22 +160,22 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Customer</th>
-                                            <th>Employee Name</th>
-                                            <th>Product Name</th>
-                                            <th>Order Date</th>
-                                            <th>Shipper</th>
+                                            <th>Shipped Date</th>
+                                            <th>Order ID</th>
                                             <th>Price</th>
+                                            <th>Discount</th>
+                                            <th>Freight</th>
+                                            <th>Total Price</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Customer</th>
-                                            <th>Employee Name</th>
-                                            <th>Product Name</th>
-                                            <th>Order Date</th>
-                                            <th>Shipper</th>
+                                            <th>Shipped Date</th>
+                                            <th>Order ID</th>
                                             <th>Price</th>
+                                            <th>Discount</th>
+                                            <th>Freight</th>
+                                            <th>Total Price</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -187,11 +183,11 @@
                                         <?php while($row = pg_fetch_object($result)) : ?>
 
                                         <tr>
-                                            <td><?= $row->company_name; ?></td>
-                                            <td><?= $row->last_name; ?></td>
-                                            <td><?= $row->product_name; ?></td>
-                                            <td><?= $row->order_date; ?></td>
-                                            <td><?= $row->company_name; ?></td>
+                                            <td><?= $row->shipped_date; ?></td>
+                                            <td><?= $row->order_id; ?></td>
+                                            <td><?= $row->price; ?></td>
+                                            <td><?= $row->discount; ?></td>
+                                            <td><?= $row->freight; ?></td>
                                             <td><?= $row->total_price; ?></td>
                                         </tr>
 
