@@ -18,7 +18,11 @@
                 $products->unit_price,
                 $quantity,
                 $discount)";
-    pg_query($db, $query);
+    $order = pg_query($db, $query);
 
-    header('location: sales_add_product.php?id='.$order_id);
+    if(!$order) {
+        header('location: sales_add_product.php?err=1&id='.$order_id);
+    } else {
+        header('location: sales_add_product.php?err=0&id='.$order_id);
+    }
 ?>

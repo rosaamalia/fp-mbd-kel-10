@@ -47,5 +47,5 @@
                 RETURNING order_id";
     $order = pg_fetch_object(pg_query($db, $query));
 
-    header('location: sales_add_product.php?id='.$order->order_id);
+    header('location: sales_add_product.php?err=0&id='.$order->order_id);
 ?>

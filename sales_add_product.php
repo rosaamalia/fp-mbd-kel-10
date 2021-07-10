@@ -2,6 +2,13 @@
     require 'connection.php';
 
     $id = $_GET["id"];
+    $err = $_GET["err"];
+
+    if($err == 1) {
+        echo "<script>
+        alert ('The stock you entered exceeds the stock input limit. Please reudce its amount.');
+        </script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -173,6 +180,9 @@
                                             <label for="quantity">Quantity</label>
                                             <input type="number" class="form-control" name="quantity" id="quantity"
                                                 required>
+                                            <div class="invalid-feedback">
+                                                Please select a valid state.
+                                            </div>
                                         </div>
                                         <div class="quantity form-group col-3">
                                             <label for="discount">Discount</label>
