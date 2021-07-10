@@ -53,7 +53,7 @@
 
             <!-- Nav Item - Sales -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="sales.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sales</span></a>
             </li>
@@ -147,7 +147,7 @@
 
                         <!-- Sales Card -->
                         <div class="col-xxl-3 col-md-6 mb-4" href="">
-                            <a class="card border-bottom-primary shadow h-100 py-2" href="">
+                            <a class="card border-bottom-primary shadow h-100 py-2" href="sales.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -165,7 +165,7 @@
 
                         <!-- Sales Report -->
                         <div class="col-xxl-3 col-md-6 mb-4">
-                            <a class="card border-bottom-primary shadow h-100 py-2" href="">
+                            <a class="card border-bottom-primary shadow h-100 py-2" href="salesreport.php">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
