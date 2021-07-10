@@ -4,24 +4,24 @@
 
 require('fpdf.php');
 
-$pdf=new FPDF();
+$pdf=new FPDF('L','mm','A4');
 $pdf->AddPage();
 $pdf->SetTitle('Sales Report');
 
 //Set font and colors
-$pdf->SetFont('Arial','B',16);
-$pdf->SetFillColor(255,0,0);
-$pdf->SetTextColor(255);
-$pdf->SetDrawColor(128,0,0);
+$pdf->SetFont('Times','',14);
+$pdf->SetFillColor(255,255,255);
+$pdf->SetTextColor(0);
+$pdf->SetDrawColor(0,0,0);
 $pdf->SetLineWidth(.3);
 
 //Table header
-$pdf->Cell(20,10,'Shipped Date',1,0,'L',1);
-$pdf->Cell(20,10,'Order ID',1,1,'L',1);
-$pdf->Cell(20,10,'Price',1,1,'L',1);
-$pdf->Cell(20,10,'Discount',1,1,'L',1);
-$pdf->Cell(20,10,'Freight',1,1,'L',1);
-$pdf->Cell(20,10,'Total Price',1,1,'L',1);
+$pdf->Cell(40,10,'Shipped Date',1,0,'C',1);
+$pdf->Cell(40,10,'Order ID',1,0,'C',1);
+$pdf->Cell(40,10,'Price',1,0,'C',1);
+$pdf->Cell(40,10,'Discount',1,0,'C',1);
+$pdf->Cell(40,10,'Freight',1,0,'C',1);
+$pdf->Cell(40,10,'Total Price',1,0,'C',1);
 
 //Restore font and colors
 $pdf->SetFont('Arial','',10);
@@ -55,13 +55,10 @@ while($i<$numregs)
     $i++;
 }
 
-//Add a rectangle, a line, a logo and some text
-$pdf->Rect(5,5,170,80);
-$pdf->Line(5,90,90,90);
-$pdf->SetFillColor(224,235);
-$pdf->SetFont('Arial','B',8);
-$pdf->SetXY(5,95);
-$pdf->Cell(170,5,'PDF Sales Report',1,1,'L',1,'');
-
+$pdf->SetY(-15);
+// Arial italic 8
+$pdf->SetFont('Arial','I',8);
+// Page number
+$pdf->Cell(0,10,'Page '.$pdf->PageNo().'',0,0,'C');
 $pdf->Output();
 ?>
