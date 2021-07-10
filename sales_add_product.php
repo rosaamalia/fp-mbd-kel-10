@@ -1,10 +1,7 @@
 <?php
     require 'connection.php';
 
-    $query = "SELECT * FROM orders JOIN order_details ON orders.order_id=order_details.order_id";
-
-    $result = pg_query($db, $query);
-
+    $id = $_GET["id"];
 ?>
 
 <!DOCTYPE html>
@@ -149,116 +146,95 @@
                     <!-- Product Datas -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between m-0">
-                            <h6 class="m-0 font-weight-bold text-primary">Add Customer Profile</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Add Products to Order</h6>
                         </div>
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <form class="col" action="sales_add_customer_save.php" method="post"
+                                <form class="col" action="sales_add_product_save.php?id=<?= $id; ?>" method="post"
                                     enctype="multipart/form-data">
-                                    <div class="row gx-2 align-items-center">
-                                        <div class="form-group col-6">
-                                            <label for="customer">Customer</label>
-                                            <select class="form-control" name="customer" id="customer">
-                                                <option>Choose customer company</option>
+                                    <div class="row gx-3 align-items-center m-0">
+                                        <div class="product_name form-group col-3">
+                                            <label for="product_name">Product Name</label>
+                                            <select class="form-control" name="product_name" id="product_name">
+                                                <option>Choose product</option>
                                                 <?php
-                                                    $query = "select * from customers";
+                                                    $query = "select * from products";
 
-                                                    $customer = pg_query($db, $query);
+                                                    $product = pg_query($db, $query);
 
-                                                    for($i=0; $row = pg_fetch_object($customer); $i++) :
+                                                    for($i=0; $row = pg_fetch_object($product); $i++) :
                                                 ?>
-                                                <option><?php echo $row->company_name; ?></option>
+                                                <option><?php echo $row->product_name; ?></option>
                                                 <?php endfor; ?>
                                             </select>
                                         </div>
-                                        <div class="form-group col-6">
-                                            <label for="employee">Employee</label>
-                                            <select class="form-control" name="employee" id="employee">
-                                                <option>Choose employee</option>
-                                                <?php
-                                                    $query = "select * from employees";
-
-                                                    $employee = pg_query($db, $query);
-
-                                                    for($i=0; $row = pg_fetch_object($employee); $i++) :
-                                                ?>
-                                                <option><?php echo $row->first_name . " " . $row->last_name; ?></option>
-                                                <?php endfor; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="order_date">Order Date</label>
-                                        <input type="date" class="form-control" name="order_date" id="order_date"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="required_date">Required Date</label>
-                                        <input type="date" class="form-control" name="required_date" id="required_date"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="shipped_date">Shipped Date</label>
-                                        <input type="date" class="form-control" name="shipped_date" id="shipped_date"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ship_via">Ship via</label>
-                                        <select class="form-control" name="ship_via" id="ship_via">
-                                            <option>Choose shipper company</option>
-                                            <?php
-                                                    $query = "select * from shippers";
-
-                                                    $shipper = pg_query($db, $query);
-
-                                                    for($i=0; $row = pg_fetch_object($shipper); $i++) :
-                                                ?>
-                                            <option><?php echo $row->company_name; ?></option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="freight">Freight</label>
-                                        <input type="number" class="form-control" name="freight" id="freight" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ship_name">Name</label>
-                                        <input type="text" class="form-control" name="ship_name" id="ship_name"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ship_address">Address</label>
-                                        <input type="text" class="form-control" name="ship_address" id="ship_address"
-                                            required>
-                                    </div>
-                                    <div class="row gx-2 align-items-center">
-                                        <div class="form-group col-6">
-                                            <label for="ship_city">City</label>
-                                            <input type="text" class="form-control" name="ship_city" id="ship_city"
+                                        <div class="quantity form-group col-3">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="number" class="form-control" name="quantity" id="quantity"
                                                 required>
                                         </div>
-                                        <div class="form-group col-6">
-                                            <label for="ship_region">Region</label>
-                                            <input type="text" class="form-control" name="ship_region" id="ship_region"
-                                                required>
+                                        <div class="quantity form-group col-3">
+                                            <label for="discount">Discount</label>
+                                            <input type="number" class="form-control" name="discount" id="discount">
                                         </div>
+                                        <button type="submit" class="btn btn-primary">Add</button>
                                     </div>
-                                    <div class="row gx-2 align-items-center">
-                                        <div class="form-group col-6">
-                                            <label for="ship_postal_code">Postal Code</label>
-                                            <input type="text" class="form-control" name="ship_postal_code"
-                                                id="ship_postal_code" required>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="ship_country">Country</label>
-                                            <input type="text" class="form-control" name="ship_country"
-                                                id="ship_country" required>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Next</button>
                                 </form>
+
+                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Discount</th>
+                                            <th>Unit Price</th>
+                                            <th>Subtotal</th>
+                                            <th style="width: 150px">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+                                            $query = "SELECT * FROM order_details A JOIN products B ON A.product_id=B.product_id WHERE A.order_id=$id";
+                            
+                                            $result = pg_query($db, $query);
+
+                                            while($row = pg_fetch_object($result)) :
+                                        ?>
+
+                                        <tr>
+                                            <td><?= $row->product_name; ?></td>
+                                            <td><?= $row->quantity; ?></td>
+                                            <td><?= $row->discount; ?></td>
+                                            <td><?= "$".$row->unit_price; ?></td>
+                                            <td><?= "$".(($row->quantity * $row->unit_price) - $row->discount); ?></td>
+                                            <td>
+                                                <a href="sales_delete_alert.php?id=<?= $id; ?>&product=<?= $row->product_id; ?>"
+                                                    class="delete_btn d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
+                                                    data-toggle="modal" data-target="#Modal_delete_sales"><i
+                                                        class="fas fa-solid fa-trash fa-sm text-white-50"></i>
+                                                    Delete</a>
+
+                                                <div class="modal fade bd-example-modal-lg" id="Modal_delete_sales"
+                                                    tabindex="-1" role="dialog" aria-labelledby="Modal_delete"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <?php endwhile; ?>
+
+                                    </tbody>
+
+                                </table>
+                                <a href="sales.php" class="btn btn-primary col-2">Save Order</a>
                             </div>
+
                         </div>
                     </div>
 
@@ -326,23 +302,12 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
-    <!-- Show edit data modal -->
-    <script>
-    $('.edit_btn').on('click',
-        function(e) {
-            e.preventDefault();
-            $('#Modal_edit_supplier').modal('show').find(
-                '.modal-content').load($(
-                this).attr('href'));
-        });
-    </script>
-
     <!-- Show delete data alert -->
     <script>
     $('.delete_btn').on('click',
         function(e) {
             e.preventDefault();
-            $('#Modal_delete_supplier').modal('show').find(
+            $('#Modal_delete_sales').modal('show').find(
                 '.modal-content').load($(
                 this).attr('href'));
         });

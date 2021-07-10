@@ -14,10 +14,6 @@
     $ship_region = $_POST["ship_region"];
     $ship_postal_code = $_POST["ship_postal_code"];
     $ship_country = $_POST["ship_country"];
-    // order_details table
-    $product_name = $_POST["product_name"];
-    $quantity = $_POST["quantity"];
-    $discount = $_POST["discount"];
 
     // query mencari customer_id
     $query = "SELECT customer_id FROM customers WHERE company_name LIKE '$customer_name'";
@@ -31,10 +27,6 @@
     // query mencari shipper_id
     $query = "SELECT shipper_id FROM shippers WHERE company_name LIKE '$ship_via'";
     $shipper_id = pg_fetch_object(pg_query($db, $query));
-
-    // query mencari product_id dan unit_price
-    $query = "SELECT * FROM products WHERE product_name LIKE '$product_name'";
-    $products = pg_fetch_object(pg_query($db, $query));
 
     // insert data
     $query = "INSERT INTO orders
@@ -55,19 +47,5 @@
                 RETURNING order_id";
     $order = pg_fetch_object(pg_query($db, $query));
 
-    $query = "INSERT INTO order_details
-                VALUES ($order->order_id,
-                $products->product_id,
-                $products->unit_price,
-                $quantity,
-                $discount)";
-    $order_notify = pg_query($db, $query);
-
-    // if (!$order_notify) {
-    //     echo "No messages\n";
-    // } else {
-    //     print_r($order_notify);
-    // }
-
-    header('location: sales.php');
+    header('location: sales_add_product.php?id='.$order->order_id);
 ?>
